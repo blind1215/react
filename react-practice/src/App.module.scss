@@ -1,0 +1,55 @@
+.react {
+  background: aqua;
+  color: black;
+  font-size: 48px;
+  font-weight: bold;
+  padding: 16px;
+}
+
+// .react-2 {
+//   background: blue;
+// }
+
+// .react-2 > .box {
+//   background: blue;
+//   width: 100px;
+//   height: 100px;
+// }
+
+// .react-2 > .box.red {
+//   background: red;
+//   width: 100px;
+//   height: 100px;
+// }
+
+// .react-2 > .box {
+//   background: $orange;
+//   width: 100px;
+//   height: 100px;
+// }
+$orange: orange;
+
+.react-2 {
+  .box {
+    width: 100px;
+    height: 100px;
+    background: blue;
+    &.orange {
+      background: $orange;
+    }
+    &.red {
+      background: red;
+    }
+
+    & + .box {
+      margin-top: 10px;
+      &.hover {
+        background: black;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      background: green;
+    }
+  }
+}

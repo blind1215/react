@@ -1,25 +1,48 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 const IterationSample = () => {
-  const names = ["눈사람", "얼음", "눈", "바람"];
+  const [names, setNames] = useState([
+    { id: 1, message: "눈사람" },
+    { id: 2, message: "얼음" },
+    { id: 3, message: "눈" },
+    { id: 4, message: "바람" },
+  ]);
+
+  //const [nextId, setNextId] = useState(5);
   const [message, setMessage] = useState("");
-  const newArray = names.map((e, i) => {
-    return <li key={i}>{e} 입니다</li>;
-  });
+  const nextId = useRef(5);
+
   const clickH = () => {
-    alert(message);
+    //alert(message);
+    // 1번방법
+    //const newNames = [...names, message];
+    // 2번방법
+    console.log(nextId);
+    setNames((prev) => [...prev, { id: nextId.current, message }]);
     setMessage("");
+    //setNextId(nextId + 1);
+    nextId.current++;
+  };
+  const changeH = (e) => {
+    setMessage(e.target.value);
+  };
+  const deleteH = (num) => {
+    console.log(num);
+    const newNames = names.filter((name) => name.id !== num);
+    setNames(newNames);
+    console.log(newNames);
   };
   return (
     <>
-      <br />
-      <input onChange={(e) => setMessage(e.target.value)} value={message} />
+      <hr />
+      <input onChange={(e) => changeH(e)} value={message} />
       <button onClick={clickH}>추가</button>
       <ul>
-        {names.map((name, i) => (
-          <li key={i}>{name} 입니다.</li>
+        {names.map(({ id, message }) => (
+          <li key={id} onDoubleClick={() => deleteH(id)}>
+            {message} 입니다.
+          </li>
         ))}
-        {newArray}
       </ul>
     </>
   );
