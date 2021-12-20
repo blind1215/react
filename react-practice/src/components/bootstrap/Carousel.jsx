@@ -83,6 +83,12 @@ const IndexList = styled.div`
   transform: translateX(-50%);
 `;
 const BtnIndex = styled.button`
-  background: ${({ active }) => active && "red"};
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: ${({ active }) => active && "50%"};
+  & + & {
+    margin-left: 10px;
+  }
 `;
 export default Carousel;

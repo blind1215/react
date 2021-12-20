@@ -13,6 +13,7 @@ export const BasicModal = styled.div`
   min-height: 600px;
   padding: 15px;
   z-index: 10;
+  overflow: auto;
 `;
 
 export const Backdrop = styled.div`

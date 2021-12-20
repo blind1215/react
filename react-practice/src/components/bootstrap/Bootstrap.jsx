@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Accordion from "./Accordion";
 import Dropdown from "./Dropdown";
 import Carousel from "./Carousel";
+import Modal from "./Modal";
+import Backdrop from "./backdrop";
 
 const accordionData = [
   {
@@ -34,9 +36,36 @@ const carousel = [
 ];
 
 const Bootstrap = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [showModalNick, setShowModalNick] = useState(false);
+  const [name, setName] = useState("");
+
+  const closeModal = () => {
+    setShowModal(false);
+    setShowModalNick(false);
+  };
+
+  const inputH = (text) => {
+    alert(text);
+    setName(text);
+    closeModal();
+  };
   return (
     <div>
       <hr />
+      <h2>이름 :{name}</h2>
+      <h2>닉네임 :</h2>
+      <button onClick={() => setShowModal(!showModal)}>이름 바꾸기</button>
+      <button onClick={() => setShowModalNick(!showModalNick)}>
+        닉네임 바꾸기
+      </button>
+      {showModal && (
+        <Modal close={closeModal} title="이름 변경" submit={inputH} />
+      )}
+      {showModalNick && (
+        <Modal close={closeModal} title="닉네임 변경" submit={inputH} />
+      )}
+      {(showModal || showModalNick) && <Backdrop onClick={closeModal} />}
       <Carousel data={carousel}></Carousel>
       <Dropdown></Dropdown>
       <Accordion data={accordionData}></Accordion>

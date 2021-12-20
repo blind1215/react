@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { PostList } from "../organisms";
 import { getPostListMain } from "../../apis/post";
+import styled from "styled-components";
 
 const Main = () => {
   const [postList, setPostList] = useState([]);
@@ -12,10 +13,15 @@ const Main = () => {
   }, []);
 
   return (
-    <div>
+    <Wrapper>
       <PostList data={postList} />
-    </div>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  max-width: 614px;
+  margin: 0 auto;
+`;
 
 export default Main;
